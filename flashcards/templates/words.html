@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block js %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="site_media/js/MochiKit/Base.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/DOM.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/Style.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/Signal.js"></script>
+  
+  <script type="text/javascript">
+    function formSubmit() {
+      if(confirm("Really delete everything from the database?")) {
+        $('cleardb').submit();
+      }
+    }
+
+    function initNav() {
+      connect("clear-button", "onclick", formSubmit);
+    }
+    addLoadEvent(initNav);
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{% load list_to_columns %}
+{% list_to_columns words as list 4 %}
+
+<h2>all words</h2>
+
+<div class="column-outer">
+	{% for l in list %}
+		<div class="column">
+			{%for p in l %}
+				<a href="{% url flashcards.views.word p %}">
+                                  {{p}}</a><br />
+			{% endfor %}
+	   </div>
+	{% endfor %}
+</div>
+
+{% if user.is_superuser %}
+<div id="import-footer">
+<!--div id="admin-options"-->
+  <form action="{% url flashcards.views.cleardb %}" method="post" id="cleardb"/>
+  <a href="" id="clear-button">clear DB</a> *
+  <a href="{% url flashcards.views.import_from_google %}">update gdata</a> &#x25C7;
+  <form action="{% url flashcards.views.load %}" method="post" enctype="multipart/form-data">
+    <label>csv import:</label> <input type="file" name="csvfile" size="50"></input>
+    <input type="submit" value="go"></input>
+  </form>
+</div>
+{% endif %}
+
+{% endblock content %}

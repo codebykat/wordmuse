@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ deck }}{% endblock %}
+
+{% block card %}
+
+<form action="play" method="POST">
+
+  <table style="padding:25px 0 25px 0" align='center'>
+    <tr>
+      <td>
+        left side:
+      </td>
+      <td rowspan='2' width='10'>&nbsp;</td>
+      <td>
+        right side:
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <select multiple="1" name="left" id="left" size="10">
+          {% for tag in tags %}
+            <option value="{{ tag }}">{{tag}}</option>
+          {% endfor %}
+        </select>
+      </td>
+      <td>
+        <select multiple="1" name="right" id="right" size="10">
+          {% for tag in tags %}
+            <option value="{{ tag }}">{{tag}}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+  </table>
+
+<input type="submit" value="play"></input>
+</form>
+
+{% endblock %}

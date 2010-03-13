@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ word }}{% endblock %}
+
+{% block card %}
+
+<div class="siblings">
+<ul>
+{% for sibling in siblings %}
+  <li><a href="{% url flashcards.views.word sibling %}">
+    {{sibling}}</a></li>
+{% endfor %}
+</ul>
+</div>
+
+<div class='tags'>
+tags:
+{% for tag in tags %}
+  <a href="{% url flashcards.views.tag tag %}">
+    {{ tag }}</a>,
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  {{ block.super }}
+  
+  <style type="text/css">
+    a.wordhighlight {
+      color: red !important;
+      font-weight: bold;
+    }
+    span.siblings { display: none; }
+  </style>
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="/site_media/js/MochiKit/Base.js"></script>
+  <script type="text/javascript" src="/site_media/js/MochiKit/DOM.js"></script>
+  <script type="text/javascript" src="/site_media/js/MochiKit/Style.js"></script>
+  <script type="text/javascript" src="/site_media/js/MochiKit/Signal.js"></script>
+  <script type="text/javascript" src="/site_media/js/MochiKit/Iter.js"></script>
+
+  <script type="text/javascript">
+    function highlightSibs(e) {
+      var sibs = $(e.src().id + "-sibs").innerHTML.split("|");
+      for(var i in sibs) {
+        if($(sibs[i])) {
+          addElementClass($(sibs[i]), "wordhighlight");
+        }
+      }
+    }
+    
+    function unhighlight(e) {
+      var sibs = $(e.src().id + "-sibs").innerHTML.split("|");
+      for(var i in sibs) {
+        if($(sibs[i])) {
+          removeElementClass($(sibs[i]), "wordhighlight");
+        }
+      }
+    }
+
+    function addMouseOvers() {
+      forEach(getElementsByTagAndClassName("a", "tagword"),
+        function(elem) {
+          connect(elem, "onmouseover", highlightSibs);
+          connect(elem, "onmouseout", unhighlight);
+        }
+      );
+    }  
+    addLoadEvent(addMouseOvers);
+  </script>
+{% endblock %}
+
+{% block content %}
+
+<h2>tag: {{tag}}</h2>
+
+{% load list_to_columns %}
+{% list_to_columns words as list 4 %}
+
+<div class="column-outer">
+	{% for l in list %}
+		<div class="column">
+			{%for p in l %}
+				<a class="tagword" id="{{p}}"
+                                  href="{% url flashcards.views.word p %}">
+                                    {{p}}</a>
+				  <span id="{{p}}-sibs" class="siblings">{% for sib in p.siblings.all %}{{ sib }}|{%endfor%}</span>
+				  <!-- {% for sib in p.siblings.all %}
+   			    &bull; {{ sib }}
+				  {% endfor %} -->
+				  <br />
+			{% endfor %}
+	   </div>
+	{% endfor %}
+</div>
+
+{% endblock %}

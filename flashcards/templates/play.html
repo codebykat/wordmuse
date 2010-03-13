@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ deck }}{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="site_media/js/MochiKit/Base.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/DOM.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/Style.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/Signal.js"></script>
+  <script type="text/javascript" src="site_media/js/MochiKit/Iter.js"></script>
+  <script type="text/javascript" src="site_media/js/flashcards.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div id="scoreboard">
+  <span id='num-cards'>?</span> cards
+  <table><tr>
+    <td>hit:</td>
+    <td><span id='hits'>0</span></td>
+    <td colspan='2'>&nbsp;</td>
+  </tr><tr>
+    <td>miss:</td>
+    <td><span id='misses'>0</td>
+  </tr></table>
+  <input type="button" value="reset" id="reset2"></input>
+
+</div>
+
+{% for card in cards %}
+  <div class="card cardfront" id="card-{{forloop.counter0}}">
+    <h1>{{ card.front }}</h1>
+  </div>
+
+  <div class="card cardback" id="card-{{forloop.counter0}}-back">
+    <h1>{{ card.back }}</h1>
+  </div>
+{% endfor %}
+
+<div id="yesno" class="buttons">
+  <input type="button" value="yes" id="yes"></input>
+  <input type="button" value="no" id="no"></input>
+</div>
+
+<div id="endbuttons" class="card">
+  <h3>final score: <span id="score"></span>%</h3>
+  <br><br>
+  <input type="button" value="reset" id="reset"></input>
+  <input type="button" value="redo misses" id="redo"></input>
+</div>
+
+{% endblock content %}

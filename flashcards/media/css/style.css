@@ -1,0 +1,183 @@
+body {
+  font-family: sans-serif;
+/*  background-color: #ADD8E6;*/
+  background-color: #B0E0E6;
+}
+
+div.content {
+  width: 95%;
+  margin: 0 auto;
+  padding: 0 25px 25px 25px;
+}
+
+a, a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+div.card {
+  background-color: #fff;
+  border: 2px black solid;
+  width: 250px;
+  min-height: 150px;
+  margin: 100px auto;
+  padding: 15px;
+  text-align: center;
+}
+
+div.cardback {
+  display: none;
+}
+
+div#scoreboard {
+  background-color: #ccffff;
+  width: 80px;
+  border: 1px black solid;
+  padding: 10px;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+
+#scoreboard table {
+  font-size: 14px;
+  text-align: right;
+  width: 80px;
+  border-bottom: 1px black solid;
+  border-top: 1px black solid;
+  margin: 2px 0 10px 0;
+  padding: 8px 0 3px 0;
+}
+
+#scoreboard #num-cards {
+  font-weight: bold;
+}
+
+.buttons {
+  text-align: center;
+  width: 200px;
+  margin: 0px auto;
+  display: none;
+}
+
+#endbuttons {
+  display: none;
+}
+
+.tags, .siblings {
+  text-align: left;
+}
+
+ul {
+  text-align: left;
+}
+
+div.column-outer {
+  height: 445px;
+  overflow: auto;
+  background-color: #fff;
+  border: 1px black solid;
+}
+
+div.column {
+  width: 22%;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+}
+
+div.word {
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  font-size: 24px;
+  text-align: center;
+  border: 1px white solid;
+}
+
+div.column a:link, div.column a:visited {
+  font-size: 18px;
+  color: black;
+  line-height: 24px;
+}
+
+div.column a:hover {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+div.tagword {
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+  font-size: 24px;
+  text-align: center;
+  border: 1px white solid;
+}
+
+div#import-footer {
+  padding: 5px;
+  position: absolute;
+  /*bottom: 58px;*/
+  top: 15px;
+  height: 24px;
+  z-index: 1000;
+  right: 0px;
+  border: 1px black solid;
+  border-right: 0;
+  background-color: #fff;
+}
+
+div.footer .logo {
+  font-weight: bold;
+  font-size: 24px;
+  color: #5F9EA0;
+  padding: 6px 0 3px 10px;
+  position: absolute;
+  left: 0px;
+  cursor: pointer;
+}
+
+div.footer {
+  background-color: #E0FFFF;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  border-top: 1px black solid;
+  width: 100%;
+  height: 30px;
+}
+
+.nav {
+  padding: 5px 25px 0 0;;
+  line-height: 30px;
+}
+
+.nav a:hover {
+  text-decoration: underline overline;
+}
+
+div#loginbox {
+  background-color: #ccffff;
+  border: 1px black solid;
+  font-size: 12px;
+  padding: 5px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#loginbox a:hover {
+  text-decoration: none;
+}

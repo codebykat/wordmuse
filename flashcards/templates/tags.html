@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load list_to_columns %}
+{% list_to_columns tags as list 4 %}
+
+<h2>all tags</h2>
+
+<div class="column-outer">
+	{% for l in list %}
+		<div class="column">
+			{%for p in l %}
+				<a href="{% url flashcards.views.tag p %}">
+                                  {{p}}</a><br />
+			{% endfor %}
+	   </div>
+	{% endfor %}
+</div>
+
+{% endblock %}

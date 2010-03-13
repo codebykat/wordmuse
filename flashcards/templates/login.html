@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block css %}
+  {{ block.super }}
+
+  <style type="text/css">
+    #loginbox { display: none; }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<div class='card'>
+{% if user.is_authenticated %}
+  logged in as {{ user }}<br><br>
+
+  <a href="{% url django.contrib.auth.views.logout_then_login %}">logout</a>
+{% endif %}
+
+
+{% if not user.is_authenticated %}
+  <form method="post" action=".">
+  <table style="padding:25px 0 35px 0;">
+  <tr><td style="font-size:12px;">username:</td><td>{{ form.username }}</td></tr>
+  <tr><td style="font-size:12px;">password:</td><td>{{ form.password }}</td></tr>
+  </table>
+
+  <input type="submit" value="login" />
+  {% ifequal next "" %}
+    <input type="hidden" name="next" value="{% url flashcards.views.words %}" />
+  {% else %}
+    <input type="hidden" name="next" value="{{ next }}" />
+  {% endifequal %}
+  </form>
+{% endif %}
+
+</div>
+
+{% endblock %}

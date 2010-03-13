@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>{% block pagetitle %}wordmuse{% endblock %}</title>
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="/site_media/css/style.css"/>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+</head>
+<body {%block bodyargs %}{% endblock%}>
+
+<div class="content">
+{% block content %}
+
+<div class="card">
+  <h1>{% block title %}{% endblock %}</h1>
+
+  {% block card %}
+  {% endblock %}
+</div>
+
+{% endblock %}</div>
+
+<div class="footer">
+  {% block footer %}
+  <span class="logo" onClick="javascript:location.href='{% url flashcards.views.words %}';">
+    wordmuse
+  </span>
+
+  <span class="nav"><a href="{% url flashcards.views.words %}">
+    all words</a></span>
+  <span class="nav"><a href="{% url flashcards.views.tags %}">
+    all tags</a></span>
+  <span class="nav"><a href="{% url flashcards.views.deck %}">
+    new deck</a></span>
+
+  <div id="loginbox">
+  {% if user.is_authenticated %}
+    <a href="{% url django.contrib.auth.views.logout_then_login %}">logout {{ user }}</a>
+  {% else %}
+      <a href="{% url django.contrib.auth.views.login %}">login</a>
+  {% endif %}
+  </div>
+
+  {% endblock footer %}
+</div>
+
+</body>
+</html>
