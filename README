@@ -1,0 +1,19 @@
+** This is a work in progress! **
+
+wordmuse is a Django-based flashcard application that I wrote to support
+my study of Japanese.  It syncs data from a spreadsheet on Google Docs.
+
+To get started:
+
+Edit settings.py for important things such as the database setup.
+
+Then (this is basic Django fare):
+
+$ createdb wordmuse      # create the database
+$ ./manage.py syncdb     # initialize the database
+$ ./manage.py runserver  # run the app locally
+
+Should work fine with your own CSV file (see the provided words.csv for
+an example); as of right now if you want to pull from a Google Docs
+spreadsheet you'll need to change the code in views.py.  (I'll pull
+that out into settings someday.)
